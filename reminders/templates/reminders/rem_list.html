@@ -1,0 +1,21 @@
+{% extends "reminders/base.html" %}
+
+{# This template is not be used directly but to be inherited for
+any list display purposes #}
+
+{% block title %} {{ block.super }} {% endblock %}
+
+{% block main_content %}
+    <a href="{% url 'reminders:add' %}">Add new Reminder</a></br></br>
+    {% if my_reminders %}
+        <ul>
+            {% for rem in my_reminders %}
+                <li><a href="{% url 'reminders:detail' rem.pk %}">
+{{ rem.title }}  --------  {{ rem.date }}</a></li></br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Items to Display</p>
+    {% endif %}
+    <a href="{% url 'accounts:logout' %}">Log Out</a></br>
+{% endblock %}

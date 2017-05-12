@@ -1,0 +1,39 @@
+{% extends "reminders/base.html" %}
+
+{% block main_content %}
+
+{% if form.errors %}
+<p>Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'reminders:update' rem_id %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.title.label_tag }}</td>
+    <td>{{ form.title }}</td>
+</tr>
+<tr>
+    <td>{{ form.detail.label_tag }}</td>
+    <td>{{ form.detail }}</td>
+</tr>
+<tr>
+    <td>{{ form.date.label_tag }}</td>
+    <td>{{ form.date }}</td>
+</tr>
+</table>
+
+<input type="submit" value="update" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endblock %}

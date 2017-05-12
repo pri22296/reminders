@@ -1,0 +1,11 @@
+{% extends "reminders/base.html" %}
+
+{% block title %} {{ block.super }} {% endblock %}
+{% block extra_head %} {{ block.super }} <h2>{{ rem.title }}</h2> {% endblock %}
+
+{% block main_content %}
+    <p><h3>{{ rem.detail }}</h3></p>
+    <p>{{ rem.date }}</p>
+    <p><a href="{% url 'reminders:update' rem.pk %}">Update</a>
+    <p><a href="{% url 'reminders:remove' rem.pk %}">Remove</a>
+{% endblock %}

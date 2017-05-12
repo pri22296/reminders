@@ -1,0 +1,8 @@
+{% extends "reminders/rem_list.html" %}
+
+{% block extra_head %} {{ block.super }}<h2>Upcoming Reminders</h2>{% endblock %}
+
+{% block main_content %}
+    <a href="{% url 'reminders:all' %}">Switch to all Reminders</a></br></br>
+    {{ block.super }}
+{% endblock %}
